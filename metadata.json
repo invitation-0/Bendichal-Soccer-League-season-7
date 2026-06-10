@@ -1,0 +1,6 @@
+{
+  "name": "BSL Auction Block",
+  "description": "A premium, high-visibility, dark theme draft & auction dashboard for the Bendichal Soccer League (BSL).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

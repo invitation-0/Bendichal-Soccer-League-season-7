@@ -200,6 +200,19 @@ export default function App() {
   // ============================================================
   //  APP STATES
   // ============================================================
+  const [isViewerMode, setIsViewerMode] = useState(false);
+
+  const toggleFullscreenViewer = () => {
+    setIsViewerMode(!isViewerMode);
+    
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch((err) => {
+        console.log(`Error enabling fullscreen: ${err.message}`);
+      });
+    } else {
+      document.exitFullscreen();
+    }
+  };
   const [pools, setPools] = useState<Player[]>(() => {
     const saved = localStorage.getItem(STORAGE_KEY + '_pools');
     if (saved) return JSON.parse(saved);
@@ -730,6 +743,12 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-950 font-sans text-neutral-200 select-none antialiased flex flex-col overflow-x-hidden relative">
+      <button
+        onClick={toggleFullscreenViewer}
+        className="fixed top-4 right-4 z-50 bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md text-xs font-semibold border border-slate-600 transition shadow-lg flex items-center gap-1.5"
+      >
+        {isViewerMode ? '❌ Exit Viewer Mode' : '📺 View Presenter Mode'}
+      </button>
       
       {/* Background Decorative Ambient Glows */}
       <div className="absolute w-[800px] h-[800px] bg-blue-600/5 rounded-full blur-[140px] -top-1/4 -left-1/4 pointer-events-none z-0" />
@@ -1069,14 +1088,17 @@ export default function App() {
 
                     </div>
 
-                    {/* Quick-Click Header Banner with dynamic metadata rules */}
-                    <div className="bg-slate-950/80 px-6 py-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 relative z-10 font-mono">
-                      <span className="font-extrabold text-[#50e680] uppercase tracking-wider flex items-center gap-2">
-                        <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]"></span>
-                        COMMISSIONER CONTROL DESK DIRECT CO-ASSIGNMENT
-                      </span>
-                      <span className="text-slate-500">Fast bid click automatically raises draft slot value by <b className="text-amber-400 font-extrabold">+{BID_INCREMENT}M</b></span>
-                    </div>
+                   {/* Quick-Click Header Banner with dynamic metadata rules */}
+          {!isViewerMode && (
+            <div className="bg-slate-950/80 px-6 py-4 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400 relative z-10">
+              <span className="font-extrabold text-[#50e680] uppercase tracking-wider flex items-center gap-2">
+                <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#10b981]"></span>
+                COMMISSIONER CONTROL DESK DIRECT CO-ASSIGNMENT
+              </span>
+              <span className="text-slate-500">Fast bid click automatically raises draft slot value by <b className="text-amber-400 font-extrabold">+{BID_INCREMENT}M</b></span>
+            </div>
+          )}
+            
 
                   </div>
 

@@ -5,6 +5,8 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
+    base: '/Bendichal-Soccer-League-season-7/',
+       plugins: [react(), tailwindcss()],
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {

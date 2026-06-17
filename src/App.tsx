@@ -201,16 +201,17 @@ export default function App() {
   //  APP STATES
   // ============================================================
   const [isViewerMode, setIsViewerMode] = useState(false);
+  const presentationRef = useRef<HTMLDivElement>(null);
 
-  const toggleFullscreenViewer = () => {
-    setIsViewerMode(!isViewerMode);
-    
+ const toggleFullscreenViewer = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().catch((err) => {
+      presentationRef.current?.requestFullscreen().catch((err) => {
         console.log(`Error enabling fullscreen: ${err.message}`);
       });
+      setIsViewerMode(true);
     } else {
       document.exitFullscreen();
+      setIsViewerMode(false);
     }
   };
   const [pools, setPools] = useState<Player[]>(() => {
@@ -900,7 +901,13 @@ export default function App() {
           <div className="h-full flex flex-col xl:flex-row divide-y xl:divide-y-0 xl:divide-x divide-slate-800/80">
             
             {/* Left side: Broadcaster arena & controls */}
-            <div ref={activeContainerRef} className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6 lg:space-y-8 bg-grid-pattern relative">
+            <div ref={presentationRef} className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6 lg:space-y-8 bg-grid-pattern relative fullscreen:p-12 fullscreen:w-full fullscreen:h-full fullscreen:bg-slate-950 fullscreen:flex fullscreen:flex-col fullscreen:justify-center">
+              <button
+            onClick={toggleFullscreenViewer}
+            className="absolute top-4 right-4 z-50 bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md text-xs font-bold border border-slate-600 transition shadow-lg opacity-40 hover:opacity-100 flex items-center gap-1.5"
+          >
+            {isViewerMode ? '❌ Exit Presenter Mode' : '📺 Switch to Presenter Mode'}
+          </button>
               
               {/* STAGE NOMINATION SHORTCUT STRIP */}
               {currentPlayerId === null && (

@@ -901,7 +901,7 @@ export default function App() {
           <div className="h-full flex flex-col xl:flex-row divide-y xl:divide-y-0 xl:divide-x divide-slate-800/80">
             
             {/* Left side: Broadcaster arena & controls */}
-            <div ref={presentationRef} className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6 lg:space-y-8 bg-grid-pattern relative fullscreen:p-12 fullscreen:w-full fullscreen:h-full fullscreen:bg-slate-950 fullscreen:flex fullscreen:flex-col fullscreen:justify-center">
+            <div ref={activeContainerRef} className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8 space-y-6 lg:space-y-8 bg-grid-pattern relative">
               <button
             onClick={toggleFullscreenViewer}
             className="absolute top-4 right-4 z-50 bg-slate-800 hover:bg-slate-700 text-white px-3 py-1.5 rounded-md text-xs font-bold border border-slate-600 transition shadow-lg opacity-40 hover:opacity-100 flex items-center gap-1.5"
@@ -958,7 +958,13 @@ export default function App() {
                   ============================================================ */}
               {activePlayer ? (
                 <div className="space-y-6">
-                  <div className="bg-slate-900/60 border-2 border-slate-800 rounded-[32px] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0.8)] relative backdrop-blur-strong">
+                  <div ref={presentationRef} className="bg-slate-900/60 border-2 border-slate-800 rounded-[32px] overflow-hidden shadow-[0_0_60px_rgba(0,0,0,0,0.8)] relative backdrop-blur-strong fullscreen:p-12 fullscreen:w-full fullscreen:h-full fullscreen:bg-[#030712] fullscreen:flex fullscreen:flex-col fullscreen:justify-center fullscreen:items-center">
+                    <button
+              onClick={toggleFullscreenViewer}
+              className="absolute top-4 right-4 z-50 bg-slate-800 hover:bg-slate-700 text-white px-2.5 py-1.5 rounded-md text-[11px] font-bold border border-slate-600 transition shadow-lg opacity-40 hover:opacity-100 flex items-center gap-1.5"
+            >
+              {isViewerMode ? '❌ Exit Presenter Mode' : '📺 Switch to Presenter Mode'}
+            </button>
                     
                     {/* High-impact Glowing Neon Bar under header */}
                     <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 via-sky-500 via-yellow-400 to-emerald-500" />

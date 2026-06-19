@@ -978,57 +978,25 @@ export default function App() {
                         {/* Premium Dynamic Neon Aura behind card */}
                         <div className="absolute inset-0 bg-gradient-to-b from-emerald-500/20 via-sky-500/10 to-transparent rounded-[36px] blur-3xl" />
                         
-                        {/* THE FUT CARD DESIGN */}
-                        <div className="w-60 h-88 rounded-[28px] bg-gradient-to-b from-slate-900 to-slate-950 border-2 border-amber-400/50 p-6 flex flex-col justify-between relative shadow-2xl overflow-hidden">
-                          
-                          {/* Watermark identifier behind initials */}
-                          <div className="absolute inset-0 select-none opacity-[0.03] flex items-center justify-center font-black pointer-events-none text-[180px] text-white">
-                            {activePlayer.pos}
-                          </div>
-
-                          <div className="flex justify-between items-start z-10">
-                            <div>
-                              <div className="text-4xl font-extrabold text-amber-300 font-display tracking-tighter">{activePlayerOvr}</div>
-                              <div className="text-[9px] font-black uppercase tracking-widest text-emerald-400 mt-1 bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20">{activePlayer.pos}</div>
-                            </div>
-                            <div className="text-right">
-                              <span className="text-[8px] text-slate-500 uppercase tracking-widest block font-bold">RESERVE</span>
-                              <span className="text-base font-black text-amber-400 font-mono">{activePlayer.isGK ? GK_BASE : FIELD_BASE}M</span>
-                            </div>
-                          </div>
-
-                          {/* Center Silhouetted Visual Initials */}
-                          <div className="my-2 py-2 flex items-center justify-center relative z-10">
-                            <div className="h-30 w-30 rounded-full bg-slate-800/30 border border-slate-700/50 flex items-center justify-center text-4xl font-black text-amber-100 tracking-tight shadow-inner relative overflow-hidden">
-                              <span className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-500/10 via-transparent to-transparent pointer-events-none z-10" />
-                              {activePlayer.photoUrl ? (
-                                <img
-                                  src={activePlayer.photoUrl}
-                                  alt={activePlayer.name}
-                                  className="h-full w-full object-cover"
-                                  referrerPolicy="no-referrer"
-                                />
-                              ) : (
-                                activePlayer.name.split(' ').map(n=>n[0]).join('').slice(0,3).toUpperCase()
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="text-center z-10 w-full">
-                            <h4 className="text-sm font-black tracking-wide text-white uppercase truncate drop-shadow-md font-display">{activePlayer.name}</h4>
-                            
-                            {/* Physical specs & stats block */}
-                            <div className="grid grid-cols-6 gap-0.5 border-t border-slate-800/80 pt-2.5 mt-2.5 text-[8.5px] font-mono text-slate-400">
-                              {activePlayerStats && activePlayerStats.map((stat, idx) => (
-                                <div key={idx} className="text-center">
-                                  <div className="text-[7px] text-slate-500 scale-90">{stat.label}</div>
-                                  <div className="font-bold text-white mt-0.5">{stat.val}</div>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    {activePlayer?.photoUrl ? (
+  <img 
+    src={activePlayer.photoUrl} 
+    alt={activePlayer.name} 
+    className="w-[380px] h-[540px] rounded-[24px] object-cover border-2 border-slate-800 shadow-2xl"
+  />
+) : activePlayer?.img ? (
+  <img 
+    src={activePlayer.img} 
+    alt={activePlayer.name} 
+    className="w-[380px] h-[540px] rounded-[24px] object-cover border-2 border-slate-800 shadow-2xl"
+  />
+) : (
+  <div className="w-[380px] h-[540px] rounded-[24px] bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center text-slate-500 p-6 text-center">
+    <span className="text-4xl mb-3">⚽</span>
+    <p className="font-bold text-sm uppercase tracking-wider text-white">{activePlayer?.name}</p>
+    <p className="text-xs text-slate-600 mt-1">No image URL added yet</p>
+  </div>
+)}
 
                       {/* Right: Massive TV numbers for the room to read easily */}
                       <div className="flex-1 w-full text-center lg:text-left space-y-6">

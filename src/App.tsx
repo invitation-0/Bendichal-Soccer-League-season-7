@@ -996,10 +996,11 @@ export default function App() {
     <p className="font-bold text-sm uppercase tracking-wider text-white">{activePlayer?.name}</p>
     <p className="text-xs text-slate-600 mt-1">No image URL added yet</p>
   </div>
-)}
+  )}
+</div> {/* <--- PASTE THE EXTRA CLOSING TAG DIRECTLY HERE */}
 
-                      {/* Right: Massive TV numbers for the room to read easily */}
-                      <div className="flex-1 w-full text-center lg:text-left space-y-6">
+{/* Right: Massive TV numbers for the room to read easily */}
+<div className="flex-1 w-full text-center lg:text-left space-y-6">
                         <div>
                           <div className="inline-flex items-center gap-2 mb-3">
                             <span className="text-[10px] font-black uppercase tracking-[0.25em] bg-sky-500/10 border border-sky-400/20 px-3.5 py-1 rounded-full text-sky-400">

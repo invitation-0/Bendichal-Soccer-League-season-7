@@ -982,21 +982,21 @@ export default function App() {
   <img 
     src={activePlayer.photoUrl} 
     alt={activePlayer.name} 
-    className="w-[380px] h-[540px] rounded-[24px] object-cover border-2 border-slate-800 shadow-2xl"
+    className="w-[460px] h-[680px] rounded-[24px] object-cover border-2 border-slate-800 shadow-2xl"
   />
 ) : activePlayer?.img ? (
   <img 
     src={activePlayer.img} 
     alt={activePlayer.name} 
-    className="w-[380px] h-[540px] rounded-[24px] object-cover border-2 border-slate-800 shadow-2xl"
+    className="w-[460px] h-[680px] rounded-[24px] object-cover border-2 border-slate-800 shadow-2xl"
   />
 ) : (
-  <div className="w-[380px] h-[540px] rounded-[24px] bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center text-slate-500 p-6 text-center">
-    <span className="text-4xl mb-3">⚽</span>
-    <p className="font-bold text-sm uppercase tracking-wider text-white">{activePlayer?.name}</p>
+  <div className="w-[460px] h-[680px] rounded-[24px] bg-slate-900 border-2 border-dashed border-slate-700 flex flex-col items-center justify-center text-slate-500 p-6 text-center">
+    <span className="text-5xl mb-4">⚽</span>
+    <p className="font-bold text-lg uppercase tracking-wider text-white">{activePlayer?.name}</p>
     <p className="text-xs text-slate-600 mt-1">No image URL added yet</p>
   </div>
-  )}
+)}
 </div> {/* <--- PASTE THE EXTRA CLOSING TAG DIRECTLY HERE */}
 
 {/* Right: Massive TV numbers for the room to read easily */}
